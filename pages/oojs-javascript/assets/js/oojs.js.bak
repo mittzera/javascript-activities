@@ -1,0 +1,68 @@
+class BankAccount {
+    consctructor(agency, number, type) {
+    this.agency = agency;
+    this.number = number;
+    this.type = type;
+    this._balance = 0   ;   
+    }
+    
+    get _balance(){
+        return this._balance;
+    }
+
+    set _balance(value){
+        this._balance = value;
+    }
+
+    withdraw(value){
+        if(value > this.balance){
+            return "Insuficient Balance";
+        }
+        this._balance = this.balance - value;
+
+        return this._balance;
+    }
+
+    deposit(value) {
+        this._balance = this.balance - value; 
+        return this._balance;
+    }
+}
+
+class CheckingAccount extends BankAccount{
+    consctructor(agency, number, creditCard){
+        this.type = 'checking';
+        this.creditCard = creditCard;
+    }
+
+    get creditCard(){
+        return this._creditCard;
+    }
+
+    set creditCard(value){
+        this._creditCard = value;
+    }
+
+
+    class SavingsAccount extends BankAccount {
+        consctructor(agency, number, creditCard){
+            this.type = 'savings';
+        }
+    }
+
+    class GraduateAccount extends BankAccount {
+        consctructor(agency, number, creditCard){
+            super(agency, number);
+            this.type = 'graduate';
+        }
+
+
+        withdraw(value){
+            if(value > 500){
+                return "You can only withdraw 500$ or less."
+            } else if( value > this.balance ){
+                return "Insuficient Balance"
+            }
+            this._balance = this._balance - value;
+        }
+    }
